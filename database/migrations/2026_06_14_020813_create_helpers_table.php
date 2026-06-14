@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('civil_status', 50);
             $table->string('nationality', 100);
             $table->text('address');
-            $table->enum('status', ['Active', 'Inactive']);
+            $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
         });
     }

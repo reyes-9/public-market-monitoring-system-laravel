@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->integer('application_id');
             $table->string('document_name', 255);
             $table->string('document_type', 255);
             $table->string('document_path', 255);
-            $table->enum('status', ['Valid', 'Rejected', 'Pending',]);
+            $table->enum('status', ['Valid', 'Rejected', 'Pending',])->default('Pending');
             $table->string('rejection_reason', 255);
             $table->timestamps();
         });

@@ -17,15 +17,27 @@ return new class extends Migration
             $table->integer('stall_id');
             $table->integer('violation_type_id');
             $table->text('violation_description');
-            $table->string('evidence_image_path', 255);
+            $table->string('evidence_image_path', 255)->nullable();
             $table->date('violation_date');
-            $table->enum('status', ['Pending', 'Resolved', 'Dismissed', 'Deleted', 'Escalated']);
-            $table->dateTime('suspension_started');
-            $table->dateTime('suspension_end');
-            $table->enum('payment_status', ['Paid', 'Unpaid', 'Pending', 'Overdue', 'Payment_Period']);
-            $table->text('appeal_text');
-            $table->text('appeal_document_path');
-            $table->dateTime('appeal_submitted_at');
+            $table->enum('status', [
+                'Pending',
+                'Resolved',
+                'Dismissed',
+                'Deleted',
+                'Escalated'
+            ])->default('Pending');
+            $table->dateTime('suspension_started')->nullable();
+            $table->dateTime('suspension_end')->nullable();
+            $table->enum('payment_status', [
+                'Paid',
+                'Unpaid',
+                'Pending',
+                'Overdue',
+                'Payment_Period'
+            ])->default('Pending');
+            $table->text('appeal_text')->nullable();
+            $table->text('appeal_document_path')->nullable();
+            $table->dateTime('appeal_submitted_at')->nullable();
             $table->timestamps();
         });
     }

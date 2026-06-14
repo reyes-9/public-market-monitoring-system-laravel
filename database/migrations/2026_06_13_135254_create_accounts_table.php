@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->string('email', 255);
             $table->string('password', 255);
             $table->enum('user_type', ['Visitor', 'Admin', 'Vendor', 'Inspector']);
-            $table->string('otp_code', 6);
-            $table->dateTime('otp_expiry');
-            $table->integer('is_verified');
-            $table->integer('otp_sent_count');
-            $table->dateTime('last_otp_sent');
+            $table->string('otp_code', 6)->nullable();
+            $table->dateTime('otp_expiry')->nullable();
+            $table->integer('is_verified')->default(0);
+            $table->integer('otp_sent_count')->default(0);
+            $table->dateTime('last_otp_sent')->nullable();
             $table->timestamps();
         });
     }

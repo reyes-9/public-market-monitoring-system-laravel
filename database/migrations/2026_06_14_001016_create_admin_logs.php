@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_logs', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->foreignId('admin_id');
             $table->string('action', 255);
             $table->text('details');

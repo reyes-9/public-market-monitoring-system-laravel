@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('address', 255);
-            $table->text('google_maps_links');
+            $table->text('google_maps_links')->nullable();
             $table->timestamps();
         });
     }

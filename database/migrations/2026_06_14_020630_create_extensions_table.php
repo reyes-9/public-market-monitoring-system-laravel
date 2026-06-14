@@ -12,13 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('extensions', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->integer('stall_id');
             $table->integer('application_id');
             $table->enum('duration', ['3 months', '6 months', '12 months']);
             $table->decimal('extension_cost', 10, 2);
-            $table->enum('payment_status', ['Paid', 'Unpaid', 'Overdue', 'Payment_period']);
-            $table->enum('status', ['active', 'inactive']);
+            $table->enum('payment_status', [
+                'Paid',
+                'Unpaid',
+                'Overdue',
+                'Payment_period'
+            ])->default('Unpaid');
+            $table->enum('status', [
+                'active',
+                'inactive'
+            ])->default('active');
             $table->timestamps();
         });
     }

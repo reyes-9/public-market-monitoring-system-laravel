@@ -12,24 +12,41 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->string('application_number', 255);
             $table->integer('account_id');
-            $table->integer('stall_id');
-            $table->integer('section_id');
-            $table->integer('market_id');
-            $table->enum('application_type', ['stall', 'stall transfer', 'stall extension', 'helper', 'stall succession']);
-            $table->string('products', 255);
-            $table->integer('helper_id');
-            $table->integer('extension_id');
-            $table->enum('status', ['Submitted', 'Under Review', 'Approved', 'Rejected', 'Withdrawn']);
-            $table->string('rejection_reason', 255);
-            $table->integer('reviewing_admin_id');
-            $table->integer('reviewed_by');
-            $table->timestamp('reviewed_at');
-            $table->integer('inspector_id');
-            $table->date('inspection_date');
-            $table->enum('inspection_status', ['Approved', 'Rejected', 'Pending', 'Scheduled']);
+            $table->integer('stall_id')->nullable();
+            $table->integer('section_id')->nullable();
+            $table->integer('market_id')->nullable();
+            $table->enum('application_type', [
+                'stall',
+                'stall transfer',
+                'stall extension',
+                'helper',
+                'stall succession'
+            ]);
+            $table->string('products', 255)->nullable();
+            $table->integer('helper_id')->nullable();
+            $table->integer('extension_id')->nullable();
+            $table->enum('status', [
+                'Submitted',
+                'Under Review',
+                'Approved',
+                'Rejected',
+                'Withdrawn'
+            ])->default('Submitted');
+            $table->string('rejection_reason', 255)->nullable();
+            $table->integer('reviewing_admin_id')->nullable();
+            $table->integer('reviewed_by')->nullable();
+            $table->timestamp('reviewed_at')->nullable();
+            $table->integer('inspector_id')->nullable();
+            $table->date('inspection_date')->nullable();
+            $table->enum('inspection_status', [
+                'Approved',
+                'Rejected',
+                'Pending',
+                'Scheduled'
+            ])->nullable();
             $table->timestamps();
         });
     }
