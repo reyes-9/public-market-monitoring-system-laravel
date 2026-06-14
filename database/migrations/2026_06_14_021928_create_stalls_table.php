@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('stall_number', 11);
             $table->decimal('rental_fee', 10, 2);
             $table->string('stall_size', 50);
-            $table->enum('payment_status', ['Paid', 'Unpaid', 'Pending', 'Overdue', 'Payment_Period']);
-            $table->enum('status', ['available', 'occupied', 'maintenance', 'pending', 'expired', 'terminated', 'suspended']);
+            $table->enum('payment_status', ['Paid', 'Unpaid', 'Pending', 'Overdue', 'Payment_Period'])->default('Unpaid');
+            $table->enum('status', ['available', 'occupied', 'maintenance', 'pending', 'expired', 'terminated', 'suspended'])->default('available');
             $table->string('product', 255);
             $table->timestamps();
         });

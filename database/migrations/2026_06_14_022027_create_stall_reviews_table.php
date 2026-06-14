@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('stall_id');
             $table->integer('user_id');
             $table->integer('rating');
-            $table->text('comment');
-            $table->enum('comment_sentiment', ['Neutral', 'Positive', 'Negative', 'undefined']);
+            $table->text('comment')->nullable();
+            $table->enum('comment_sentiment', ['Neutral', 'Positive', 'Negative', 'undefined'])->nullable();
             $table->timestamps();
         });
     }

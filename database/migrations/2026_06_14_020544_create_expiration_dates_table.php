@@ -12,12 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expiration_dates', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             $table->integer('application_id');
             $table->integer('reference_id');
             $table->enum('type', ['stall', 'extension', 'helper', 'violation']);
-            $table->date('expiration_date');
-            $table->enum('status', ['active', 'expired', 'payment_period', 'inactive']);
+            $table->date('expiration_date')->nullable();
+            $table->enum('status', [
+                'active',
+                'expired',
+                'payment_period',
+                'inactive'
+            ])->default('active');
             $table->timestamps();
         });
     }

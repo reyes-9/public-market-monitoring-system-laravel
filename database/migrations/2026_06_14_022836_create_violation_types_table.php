@@ -16,8 +16,16 @@ return new class extends Migration
             $table->string('violation_name', 255);
             $table->decimal('fine_amount', 10, 2);
             $table->decimal('escalation_fee', 10, 2);
-            $table->enum('criticality', ['Critical', 'Not Critical']);
-            $table->enum('escalation_status', ['None', 'Warning', 'Suspended', 'Terminated']);
+            $table->enum('criticality', [
+                'Critical',
+                'Not Critical'
+            ])->default('Not Critical');
+            $table->enum('escalation_status', [
+                'None',
+                'Warning',
+                'Suspended',
+                'Terminated'
+            ])->default('None');
             $table->timestamps();
         });
     }

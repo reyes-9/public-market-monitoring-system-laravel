@@ -14,14 +14,23 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('stall_id');
-            $table->integer('extension_id');
-            $table->integer('violation_id');
-            $table->enum('source_type', ['stall', 'extension', 'violation', 'helper']);
+            $table->integer('stall_id')->nullable();
+            $table->integer('extension_id')->nullable();
+            $table->integer('violation_id')->nullable();
+            $table->enum('source_type', [
+                'stall',
+                'extension',
+                'violation',
+                'helper'
+            ]);
             $table->decimal('amount', 10, 2);
-            $table->enum('payment_status', ['Paid', 'Unpaid', 'Pending']);
-            $table->timestamp('payment_date');
-            $table->string('receipt_path', 255);
+            $table->enum('payment_status', [
+                'Paid',
+                'Unpaid',
+                'Pending'
+            ])->default('Pending');
+            $table->timestamp('payment_date')->nullable();
+            $table->string('receipt_path', 255)->nullable();
             $table->timestamps();
         });
     }

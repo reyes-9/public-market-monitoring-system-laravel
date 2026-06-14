@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('account_id');
             $table->text('message');
-            $table->text('response');
+            $table->text('response')->nullable();
             $table->enum('status', ['open', 'closed', 'in_progress']);
             $table->timestamps();
         });
