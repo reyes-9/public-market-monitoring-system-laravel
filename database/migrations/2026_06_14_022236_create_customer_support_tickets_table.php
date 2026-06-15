@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('customer_support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->integer('account_id');
+            $table->integer('user_id');
             $table->text('message');
             $table->text('response')->nullable();
-            $table->enum('status', ['open', 'closed', 'in_progress']);
+            $table->enum('status', ['open', 'closed', 'in_progress'])->default('open');
             $table->timestamps();
         });
     }
