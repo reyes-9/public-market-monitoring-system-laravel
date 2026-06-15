@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('email', 255);
             $table->string('password', 255);
             $table->enum('user_type', ['Visitor', 'Admin', 'Vendor', 'Inspector']);
+            $table->boolean('is_verified')->default(false);
             $table->string('otp_code', 6)->nullable();
-            $table->dateTime('otp_expiry')->nullable();
-            $table->integer('is_verified')->default(0);
-            $table->integer('otp_sent_count')->default(0);
-            $table->dateTime('last_otp_sent')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->unsignedInteger('otp_attempts')->default(0);
+            $table->timestamp('otp_last_sent_at')->nullable();
             $table->timestamps();
         });
     }

@@ -2,48 +2,89 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Model
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'account_id',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'alt_email',
+        'contact_no',
+        'sex',
+        'civil_status',
+        'nationality',
+        'address',
+        'status',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function account()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(Account::class);
+    }
+
+    public function stall()
+    {
+        return $this->hasOne(Stall::class);
+    }
+
+    public function violations()
+    {
+        return $this->hasMany(Violation::class);
+    }
+
+    public function stallReviews()
+    {
+        return $this->hasMany(StallReview::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function helpers()
+    {
+        return $this->hasMany(Helper::class, 'stall_owner_user_id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function adminLogs()
+    {
+        return $this->hasMany(AdminLog::class);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function vendorApplication()
+    {
+        return $this->hasOne(VendorApplication::class);
+    }
+
+    public function supportTickets()
+    {
+        return $this->hasMany(CustomerSupportTicket::class);
+    }
+
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class);
     }
 }
