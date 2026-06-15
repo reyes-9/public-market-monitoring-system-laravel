@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('expiry_date');
             $table->enum('audience', ['all', 'vendors', 'admins']);
             $table->integer('created_by');
-            $table->enum('status', ['Active', 'Archived']);
+            $table->enum('status', ['Active', 'Archived'])->default('Active');
             $table->timestamps();
         });
     }

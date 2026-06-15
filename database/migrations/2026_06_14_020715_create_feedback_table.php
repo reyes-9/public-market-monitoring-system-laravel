@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->integer('account_id');
+            $table->integer('user_id');
             $table->text('message');
             $table->enum('sentiment', ['Positive', 'Negative', 'Neutral', 'undefined']);
             $table->timestamps();

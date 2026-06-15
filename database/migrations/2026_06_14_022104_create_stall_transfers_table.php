@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('stall_transfers', function (Blueprint $table) {
             $table->id();
-            $table->integer('current_owner_id')->nullable();
-            $table->integer('deceased_owner_id')->nullable();
+            $table->integer('current_owner_user_id')->nullable();
+            $table->integer('deceased_owner_user_id')->nullable();
             $table->integer('application_id');
             $table->enum('transfer_type', ['Transfer', 'Succession']);
             $table->text('transfer_reason')->nullable();
-            $table->integer('recipient_id')->nullable();
+            $table->integer('recipient_user_id')->nullable();
             $table->enum('transfer_confirmation_status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamps();
         });

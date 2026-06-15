@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('admin_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id');
+            $table->integer('user_id');
             $table->string('action', 255);
             $table->text('details');
             $table->timestamp('timestamp');

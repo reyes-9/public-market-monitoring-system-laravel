@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('helpers', function (Blueprint $table) {
             $table->id();
             $table->integer('stall_id');
-            $table->integer('stall_owner_id');
+            $table->integer('stall_owner_user_id');
             $table->string('first_name', 255);
             $table->string('middle_name', 50);
             $table->string('last_name', 255);
